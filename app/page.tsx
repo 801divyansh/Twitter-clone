@@ -1,101 +1,92 @@
 import Image from "next/image";
+import React from "react";
+import { FaXTwitter } from "react-icons/fa6";
+import { RiHome7Line } from "react-icons/ri";
+import { FaHashtag } from "react-icons/fa6";
+import { IoNotifications } from "react-icons/io5";
+import { FaRegEnvelope } from "react-icons/fa6";
+import { FaRegBookmark } from "react-icons/fa6";
+import { IoPersonOutline } from "react-icons/io5";
+import { CiCircleMore } from "react-icons/ci";
+import FeedCard from "./components/FeedCard";
+import { HiOutlineUsers } from "react-icons/hi";
+import { AiOutlineThunderbolt } from "react-icons/ai";
+import { LuSquareSlash } from "react-icons/lu";
+
+interface TwitterSlideBar {
+  title: String;
+  icon: React.ReactNode;
+}
+
+const sideBarMenuItems: TwitterSlideBar[] = [
+  {
+    title: "Home",
+    icon: <RiHome7Line />,
+  },{
+    title: "Explore",
+    icon: <FaHashtag />
+  },{
+    title: "Notifications",
+    icon: <IoNotifications />
+  },{
+    title: "Messages",
+    icon: <FaRegEnvelope />
+  },{
+    title: "Grok",
+    icon: <LuSquareSlash />
+  },{
+    title: "Bookmarks",
+    icon: <FaRegBookmark />
+  },{
+    title: "Communities",
+    icon: <HiOutlineUsers />
+  },{
+    title: "Premium",
+    icon: <FaXTwitter />
+  },{
+    title: "Verified Orgs",
+    icon: <AiOutlineThunderbolt />
+  },{
+    title: "Profile",
+    icon: <IoPersonOutline />
+  },{
+    title: "More",
+    icon: <CiCircleMore />
+  }
+]
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div>
+        <div className="grid grid-cols-12 h-screen w-screen px-56">
+          <div className=" col-span-3 pt-2 ml-28">
+            <div className="text-3xl h-fit w-fit hover:bg-gray-600 rounded-full p-2 cursor-pointer transition-all ml-2">
+              <FaXTwitter />
+            </div>
+            <div className="mt-2 text-2xl font-sime-bold pr-5">
+              <ul>
+                {sideBarMenuItems.map((item) => (
+                   <li className="flex justify-start items-center gap-4 hover:bg-gray-800 rounded-full px-4 py-3 cursor-pointer transition-all w-fit mt-2" key={item.title}>
+                    <span className="text-2xl">{item.icon}</span>
+                    <span>{item.title}</span>
+                  </li>
+                  ))}
+              </ul>
+              <div className="mt-5 py-3 w-full">
+                <button className="text-center bg-[#1d9bf0] rounded-full text-lg px-4 py-3 w-full">Post</button>
+              </div>
+            </div>
+          </div>
+          <div className="col-span-5 border-r-[1px] border-l-[1px] border border-gray-600">
+            <FeedCard />
+            <FeedCard />
+            <FeedCard />
+            <FeedCard />
+            <FeedCard />
+          </div>
+          <div className="col-span-3"></div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
