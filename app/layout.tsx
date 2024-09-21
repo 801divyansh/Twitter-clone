@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import "./globals.css";
+import { Toaster } from 'react-hot-toast';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import ClientProviders from "./components/ClientProviders";
+
+const queryClient = new QueryClient()
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,7 +35,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+       
+         <QueryClientProvider client={queryClient}>
+        <GoogleOAuthProvider clientId="1014199154400-aegosauitpcng63h8sn6ekkcepeifjk5.apps.googleusercontent.com">
+           {children}
+            <Toaster />
+            <ReactQueryDevtools />
+          </GoogleOAuthProvider>
+        </QueryClientProvider>
+       
+           
       </body>
     </html>
   );
